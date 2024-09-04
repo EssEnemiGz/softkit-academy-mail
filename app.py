@@ -63,7 +63,7 @@ def subscribe_to_mails():
     url = temp_url.generate_temp_url("confirmation_to_mails", f"{email}", app=app, expires_in=3600)
     try:
         server = mail_manager.connectToSMTP(smtp_usr=mail_user, smtp_passw=mail_passw)
-        mail_manager.sendMail(from_email=mail_user, alias=mail_no_reply, to_email=email, body=url+f"&email={email}", subject="SoftKit Academy - Newsletter Confirmation", server=server)
+        mail_manager.sendMail(from_email=mail_user, alias=mail_no_reply, to_email=email, body=f'<a href="{url}&email={email}">Click aquí para confirmar su subscripción</a>', subject="SoftKit Academy - Newsletter Confirmation", server=server)
     except:
         err = make_response( "ERROR SENDING YOUR CONFIRMATION MAIL" )
         err.status_code = 500
