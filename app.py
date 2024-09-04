@@ -1,10 +1,10 @@
 from flask import *
+from flask_cors import CORS
 import common.mail_manager as mail_manager
 import common.db_interpreter as db_interpreter
 import common.temp_url as temp_url
 from dotenv import load_dotenv
 from datetime import timedelta
-import smtplib, ssl
 import supabase
 import os
 
@@ -24,6 +24,7 @@ server_code = os.getenv('SERVER_CODE')
 
 # Configuracion de la aplicacion web
 app = Flask(__name__)
+CORS(app)
 if secret_key == None: secret_key = "ewkwer1231231kajeklew3213ropewp21oiewrop312309-490i3u2313jwlelk"
 app.secret_key = secret_key
 app.config['SESSION_COOKIE_SECURE'] = True
@@ -68,7 +69,7 @@ def subscribe_to_mails():
         err.status_code = 500
         return err
 
-    return url+f"&email={email}"
+    return "All right, go to your e-mail"
 
 @app.route("/email/subscription/confirm", methods=["GET"])
 def confirmation_to_mails():
