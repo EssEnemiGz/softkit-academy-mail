@@ -97,5 +97,9 @@ def confirmation_to_mails():
         err.status_code = 500
         return err
     
+@app.route('/favicon.ico')
+def favicon():
+    return send_from_directory("static/icons", "favicon.ico")
+    
 if __name__=="__main__":
     app.run(debug=True)
