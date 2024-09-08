@@ -63,6 +63,18 @@ def subscribe_to_mails():
     url = temp_url.generate_temp_url("confirmation_to_mails", f"{email}", app=app, expires_in=3600)
     msg = f'<a href="{url}&email={email}">Click aquí para confirmar su subscripción</a>'
     try:
+        query = db.table("newsletter").insert({"email":email})
+        result = db_interpreter.no_return(query=query)
+        
+        if result.status_code() == 200:
+            response = make_response( "DONE!" )
+            response.status_code == 200
+            return response
+        else: 
+            err = make_response( "ERROR, REGISTERING YOUR E-MAIL" )
+            err.status_code = 500
+            return err
+    
         server = mail_manager.connectToSMTP(smtp_usr=mail_user, smtp_passw=mail_passw)
         mail_manager.sendMail(from_email=mail_user, alias=mail_no_reply, to_email=email, body=msg, subject="SoftKit Academy - Newsletter Confirmation", server=server)
     except:
@@ -85,7 +97,7 @@ def confirmation_to_mails():
         return err
     
     email = request.args.get("email")
-    query = db.table("users").update({"newsletter":True}).eq("email", email)
+    query = db.table("newsletter").insert({"confirmation":True}).eq("email", email)
     result = db_interpreter.no_return(query=query)
     
     if result.status_code() == 200:
