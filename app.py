@@ -66,11 +66,7 @@ def subscribe_to_mails():
         query = db.table("newsletter").insert({"email":email})
         result = db_interpreter.no_return(query=query)
         
-        if result.status_code() == 200:
-            response = make_response( "DONE!" )
-            response.status_code == 200
-            return response
-        else: 
+        if result.status_code() != 200:
             err = make_response( "ERROR, REGISTERING YOUR E-MAIL" )
             err.status_code = 500
             return err
