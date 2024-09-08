@@ -105,11 +105,10 @@ def no_return(*, query):
     try:
         query.execute()
     except Exception as e:
-        print(f"\033[1;32m >>> {e}\033[0m")
         err = make_response( jsonify({'status':'Execution of query returned a error.'}) )
         err.status_code = 500
 
-        err_object = db_response(response=err, output=[], status=500)
+        err_object = db_response(response=err, output=e, status=500)
         return err_object
     
     response = make_response( jsonify( "Query executed!" ) )

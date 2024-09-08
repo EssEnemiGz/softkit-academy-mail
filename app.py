@@ -65,16 +65,19 @@ def subscribe_to_mails():
     try:
         query = db.table("newsletter").insert({"email":email})
         result = db_interpreter.no_return(query=query)
-        
-        if result.status_code() != 200:
-            err = make_response( "ERROR, REGISTERING YOUR E-MAIL" )
+    except:
+        if result.output_data().code == "23505":
+            pass
+        else:
+            err = make_response( "ERROR REGISTERING YOUR  E-MAIL" )
             err.status_code = 500
             return err
     
+    try:
         server = mail_manager.connectToSMTP(smtp_usr=mail_user, smtp_passw=mail_passw)
         mail_manager.sendMail(from_email=mail_user, alias=mail_no_reply, to_email=email, body=msg, subject="SoftKit Academy - Newsletter Confirmation", server=server)
-    except:
-        err = make_response( "ERROR SENDING YOUR CONFIRMATION MAIL" )
+    except: 
+        err = make_response( "ERROR SENDING YOUR CONFIRMATION E-MAIL" )
         err.status_code = 500
         return err
 
