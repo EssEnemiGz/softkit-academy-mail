@@ -93,7 +93,7 @@ def confirmation_to_mails():
         return err
     
     email = request.args.get("email")
-    query = db.table("newsletter").insert({"confirmation":True}).eq("email", email)
+    query = db.table("newsletter").update({"confirmation":True}).eq("email", email)
     result = db_interpreter.no_return(query=query)
     
     if result.status_code() == 200:
