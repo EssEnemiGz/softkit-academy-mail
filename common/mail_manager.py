@@ -15,7 +15,7 @@ def connectToSMTP(*, smtp_usr, smtp_passw):
 
 def sendMail(*, from_email, alias, to_email, body, subject, server): 
     msg = MIMEMultipart()
-    msg['From'] = f"{alias}"
+    msg['From'] = f"{alias} <{alias}>"
     msg['To'] = to_email
     msg['Subject'] = subject
 
