@@ -121,12 +121,12 @@ def recent_login():
         err.status_code = 400
         return err
         
-    key = request.args.get("Authorization")
+    key = request.headers.get("Authorization")
     if key == None:
-         abort(401)
+        abort(401)
         
     try:
-        payload = jwt.decode(token.split(" ")[1], secret_key, algorithms=["HS256"])
+        payload = jwt.decode(key.split(" ")[1], secret_key, algorithms=["HS256"])
     except jwt.ExpiredSignatureError:
         response = make_response( "Token expired ")
         response.status_code = 401
@@ -137,10 +137,12 @@ def recent_login():
         return response
     
     if secret_key == payload.get("data"):
-        msg = "Recently, somebody loged into your account"
-        subject = "Security Alert, somebody loged into your SoftKit Academy account"
-        server = mail_manager.connectToSMTP(smtp_usr=mail_user, smtp_passw=mail_passw)
-        
+        msg = """
+        <h1>Alguien accedió a su cuenta recientemente<h1><br>
+        <br>
+        <p>Este sistema está en beta, nuevas funciones llegarán pronto</p>
+        """
+        subject = "Security Alert - SoftKit Academy"
         try:
             server = mail_manager.connectToSMTP(smtp_usr=mail_user, smtp_passw=mail_passw)
             mail_manager.sendMail(from_email=mail_user, alias=mail_no_reply, to_email=email, body=msg, subject=subject, server=server)
@@ -149,7 +151,6 @@ def recent_login():
             err.status_code = 500
             return err
     
-    print(payload, secret_key, 1)
     response = make_response( "DONE!" )
     response.status_code = 200
     return response
