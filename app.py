@@ -52,12 +52,12 @@ def index():
 def subscribe_to_mails():
     if "email" not in request.args:
         err = make_response( "You need to enter a email" )
-        err.status_code == 400
+        err.status_code = 400
         return err
         
     if request.args.get("email") == None:
         err = make_response( "You need to enter a email" )
-        err.status_code == 400
+        err.status_code = 400
         return err
     
     email = request.args.get("email")
@@ -88,12 +88,12 @@ def subscribe_to_mails():
 def confirmation_to_mails():
     if "email" not in request.args:
         err = make_response( "You need to enter a email" )
-        err.status_code == 400
+        err.status_code = 400
         return err
         
     if request.args.get("email") == None:
         err = make_response( "You need to enter a email" )
-        err.status_code == 400
+        err.status_code = 400
         return err
     
     email = request.args.get("email")
@@ -102,7 +102,7 @@ def confirmation_to_mails():
     
     if result.status_code() == 200:
         response = make_response( "DONE!" )
-        response.status_code == 200
+        response.status_code = 200
         return response
     else: 
         err = make_response( "ERROR, TRY AGAIN" )
@@ -111,22 +111,20 @@ def confirmation_to_mails():
     
 @app.route('/security/logged', methods=["PUT"])
 def recent_login():
-    if "email" not in request.args:
+    data = request.get_json()
+    if not len(data):
+        abort(400)
+    
+    email = data.get("email")
+    if email == None:
         err = make_response( "You need to enter a email" )
-        err.status_code == 400
+        err.status_code = 400
         return err
         
-    if request.args.get("email") == None:
-        err = make_response( "You need to enter a email" )
-        err.status_code == 400
-        return err
-    
-    email = request.args.get("email")
-    
     key = request.args.get("Authorization")
     if key == None:
          abort(401)
-         
+        
     try:
         payload = jwt.decode(token.split(" ")[1], secret_key, algorithms=["HS256"])
     except jwt.ExpiredSignatureError:
@@ -138,7 +136,6 @@ def recent_login():
         response.status_code = 401
         return response
     
-    print(payload, secret_key)
     if secret_key == payload.get("data"):
         msg = "Recently, somebody loged into your account"
         subject = "Security Alert, somebody loged into your SoftKit Academy account"
@@ -151,7 +148,8 @@ def recent_login():
             err = make_response( "ERROR SENDING YOUR CONFIRMATION E-MAIL" )
             err.status_code = 500
             return err
-        
+    
+    print(payload, secret_key, 1)
     response = make_response( "DONE!" )
     response.status_code = 200
     return response
@@ -161,4 +159,4 @@ def favicon():
     return send_from_directory("static/icons", "favicon.ico")
     
 if __name__=="__main__":
-    app.run(debug=True)
+    app.run(debug=True, port=6666)
