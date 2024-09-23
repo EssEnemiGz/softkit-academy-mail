@@ -138,7 +138,7 @@ def recent_login():
         response.status_code = 401
         return response
     
-    if secret_key == payload:
+    if secret_key == payload.get("data"):
         msg = "Recently, somebody loged into your account"
         subject = "Security Alert, somebody loged into your SoftKit Academy account"
         server = mail_manager.connectToSMTP(smtp_usr=mail_user, smtp_passw=mail_passw)
