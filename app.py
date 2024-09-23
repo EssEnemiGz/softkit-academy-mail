@@ -125,9 +125,9 @@ def recent_login():
         
     key = request.headers.get("Authorization")
     if key == None:
-        print(1)
         abort(401)
         
+    print(key)
     try:
         payload = jwt.decode(key.split(" ")[1], secret_key, algorithms=["HS256"])
     except jwt.ExpiredSignatureError:
