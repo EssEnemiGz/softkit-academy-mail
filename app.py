@@ -82,7 +82,9 @@ def subscribe_to_mails():
         err.status_code = 500
         return err
 
-    return 200
+    response = make_response("DONE!")
+    response.status_code = 200
+    return response
 
 @app.route("/email/subscription/confirm", methods=["GET"])
 def confirmation_to_mails():
@@ -123,15 +125,18 @@ def recent_login():
         
     key = request.headers.get("Authorization")
     if key == None:
+        print(1)
         abort(401)
         
     try:
         payload = jwt.decode(key.split(" ")[1], secret_key, algorithms=["HS256"])
     except jwt.ExpiredSignatureError:
+        print(2)
         response = make_response( "Token expired ")
         response.status_code = 401
         return response
     except jwt.InvalidTokenError:
+        print(3)
         response = make_response( "Token invalid ")
         response.status_code = 401
         return response
