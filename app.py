@@ -138,6 +138,7 @@ def recent_login():
         response.status_code = 401
         return response
     
+    print(payload, secret_key)
     if secret_key == payload.get("data"):
         msg = "Recently, somebody loged into your account"
         subject = "Security Alert, somebody loged into your SoftKit Academy account"
