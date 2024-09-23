@@ -31,7 +31,7 @@ app.secret_key = secret_key
 app.config['SESSION_COOKIE_SECURE'] = True
 app.config['SESSION_COOKIE_HTTPONLY'] = True
 app.config['SESSION_COOKIE_SAMESITE'] = "Lax"
-app.config['SESSION_COOKIE_DOMAIN'] = f".{server_url.split('//')[1]}"
+app.config['SESSION_COOKIE_DOMAIN'] = ".softkitacademy.com"
 app.permanent_session_lifetime = timedelta(weeks=52) # Sesion con duracion de 52 semanas o 1 año
 
 db = supabase.create_client(database, api)
@@ -127,11 +127,9 @@ def recent_login():
     if key == None:
         abort(401)
         
-    print(key)
     try:
         payload = jwt.decode(key.split(" ")[1], secret_key, algorithms=["HS256"])
     except jwt.ExpiredSignatureError:
-        print(2)
         response = make_response( "Token expired ")
         response.status_code = 401
         return response
