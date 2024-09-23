@@ -33,7 +33,6 @@ app.config['SESSION_COOKIE_HTTPONLY'] = True
 app.config['SESSION_COOKIE_SAMESITE'] = "Lax"
 app.config['SESSION_COOKIE_DOMAIN'] = ".softkitacademy.com"
 app.permanent_session_lifetime = timedelta(weeks=52) # Sesion con duracion de 52 semanas o 1 año
-print(secret_key)
 
 db = supabase.create_client(database, api)
 auth_key = db.auth.sign_in_with_password( {'email':admin_email, 'password':admin_passw} )
@@ -135,7 +134,6 @@ def recent_login():
         response.status_code = 401
         return response
     except jwt.InvalidTokenError:
-        print(3)
         response = make_response( "Token invalid ")
         response.status_code = 401
         return response
