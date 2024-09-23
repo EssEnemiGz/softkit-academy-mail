@@ -6,6 +6,7 @@ import common.temp_url as temp_url
 from dotenv import load_dotenv
 from datetime import timedelta
 import supabase
+import jwt
 import os
 
 # Server config
@@ -81,7 +82,7 @@ def subscribe_to_mails():
         err.status_code = 500
         return err
 
-    return "All right, go to your e-mail"
+    return 200
 
 @app.route("/email/subscription/confirm", methods=["GET"])
 def confirmation_to_mails():
@@ -107,6 +108,52 @@ def confirmation_to_mails():
         err = make_response( "ERROR, TRY AGAIN" )
         err.status_code = 500
         return err
+    
+@app.route('/security/logged', methods=["PUT"])
+def recent_login():
+    if "email" not in request.args:
+        err = make_response( "You need to enter a email" )
+        err.status_code == 400
+        return err
+        
+    if request.args.get("email") == None:
+        err = make_response( "You need to enter a email" )
+        err.status_code == 400
+        return err
+    
+    email = request.args.get("email")
+    
+    key = request.args.get("Authorization")
+    if key == None:
+         abort(401)
+         
+    try:
+        payload = jwt.decode(token.split(" ")[1], secret_key, algorithms=["HS256"])
+    except jwt.ExpiredSignatureError:
+        response = make_response( "Token expired ")
+        response.status_code = 401
+        return response
+    except jwt.InvalidTokenError:
+        response = make_response( "Token invalid ")
+        response.status_code = 401
+        return response
+    
+    if secret_key == payload:
+        msg = "Recently, somebody loged into your account"
+        subject = "Security Alert, somebody loged into your SoftKit Academy account"
+        server = mail_manager.connectToSMTP(smtp_usr=mail_user, smtp_passw=mail_passw)
+        
+        try:
+            server = mail_manager.connectToSMTP(smtp_usr=mail_user, smtp_passw=mail_passw)
+            mail_manager.sendMail(from_email=mail_user, alias=mail_no_reply, to_email=email, body=msg, subject=subject, server=server)
+        except: 
+            err = make_response( "ERROR SENDING YOUR CONFIRMATION E-MAIL" )
+            err.status_code = 500
+            return err
+        
+    response = make_response( "DONE!" )
+    response.status_code = 200
+    return response
     
 @app.route('/favicon.ico')
 def favicon():

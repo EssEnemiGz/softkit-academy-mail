@@ -2,3 +2,4 @@ python-dotenv
 Flask
 Flask-Cors
 supabase
+jwt
