@@ -20,5 +20,5 @@ def sendMail(*, from_email, alias, to_email, body, subject, server):
     msg['Subject'] = subject
 
     msg.attach(MIMEText(body, 'html'))    
-    server.sendmail(from_email, to_email, msg.as_string())
+    server.sendmail(alias, to_email, msg.as_string())
     server.quit()
