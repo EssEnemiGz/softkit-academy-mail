@@ -143,7 +143,7 @@ def recent_login():
         subject = "Security Alert - SoftKit Academy"
         try:
             server = mail_manager.connectToSMTP(smtp_usr=mail_user, smtp_passw=mail_passw)
-            mail_manager.sendMail(from_email=mail_user, alias=mail_no_reply, to_email=email, body=msg, subject=subject, server=server)
+            mail_manager.sendMail(alias=mail_no_reply, to_email=email, body=msg, subject=subject, server=server)
         except: 
             err = make_response( "ERROR SENDING YOUR CONFIRMATION E-MAIL" )
             err.status_code = 500

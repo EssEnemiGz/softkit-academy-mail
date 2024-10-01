@@ -13,7 +13,7 @@ def connectToSMTP(*, smtp_usr, smtp_passw):
     
     return server
 
-def sendMail(*, from_email, alias, to_email, body, subject, server): 
+def sendMail(*, alias, to_email, body, subject, server): 
     msg = MIMEMultipart()
     msg['From'] = alias
     msg['To'] = to_email
