@@ -29,9 +29,9 @@
                         <p class="--description-transparent">Se ha iniciado sesión en un nuevo dispositivo</p>
                         <p class="--description-transparent">
                             <br>
-                            Device: {{ info.get("device").get("family") }}<br>
+                            Device: {{ info.get("device").family }}<br>
                             IP Address: {{ info.get("ip") }}<br>
-                            OS: {{ info.get("os").get("family") }} - {{ info.get("os").get("version_string") }}<br>
+                            OS: {{ info.get("os").family }} - {{ info.get("os").version_string }}<br>
                             <!-- Location: San Francisco, CA<br> -->
                             Time: {{ info.get("date") }}<br>
                         </p>
