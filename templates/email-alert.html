@@ -14,6 +14,104 @@
         rel="preload" media="print" onload="this.onload=null;this.rel='stylesheet'">
     <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;900&display=swap"
         rel="stylesheet">
+
+    <style>
+        .--inline-container {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .--block-container {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .--button-default-hover:hover {
+            transition: .1s ease-in-out;
+            background-color: var(--purple);
+            cursor: pointer;
+        }
+
+        .--button {
+            position: relative;
+            background: var(--gray);
+            color: var(--white);
+            padding: 15px 25px 15px 25px;
+            border-radius: var(--border-3);
+            width: fit-content;
+        }
+
+        .--full-screen {
+            height: 100svh;
+            width: 100svw;
+        }
+
+        .self-centered {
+            margin-inline: auto;
+        }
+
+        .--margin-inline {
+            margin-inline: 24px;
+        }
+
+        .--element-micro-margin {
+            margin-block: var(--margin-5);
+        }
+
+        .--clickable {
+            cursor: pointer;
+        }
+
+        .--no-stroke {
+            font-weight: var(--fw-400);
+        }
+
+        .--stroke {
+            font-weight: var(--fw-600);
+        }
+
+        .--description-transparent {
+            color: var(--gray-medium);
+            font-size: var(--fs-5);
+        }
+
+        .--sinopsis {
+            font-size: var(--fs-4);
+        }
+
+        .--responsive-inline-centered {
+            justify-content: initial;
+        }
+
+        .--responsive-block-centered {
+            align-items: initial;
+        }
+
+        .--section {
+            padding-block: var(--margin-section);
+        }
+
+        .--section-2 {
+            padding-block: calc(var(--margin-section)/2);
+        }
+
+        .--section-2-top {
+            padding-top: calc(var(--margin-section)/2);
+        }
+
+        .--section-2-bottom {
+            padding-bottom: calc(var(--margin-section)/2);
+        }
+
+        .--title {
+            font-size: var(--fs-3);
+            font-weight: var(--fw-500);
+            color: var(--coal);
+            margin-block-end: 4px;
+        }
+    </style>
 </head>
 
 <body class="--full-screen --inline-container">
@@ -23,7 +121,11 @@
             <p class="--description-transparent">Nuestros sistemas detectaron actividad inusual en su cuenta</p>
             <div class="--section-2-top --section-mini-margin --block-container">
                 <div class="--inline-container --responsive-block-centered">
-                    <img src="https://softkitacademy.com/static/icons/warning.svg" class="--trending-down" alt="Alert icon" width="25" height="25">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
+                        fill="#f00">
+                        <path
+                            d="m40-120 440-760 440 760H40Zm138-80h604L480-720 178-200Zm302-40q17 0 28.5-11.5T520-280q0-17-11.5-28.5T480-320q-17 0-28.5 11.5T440-280q0 17 11.5 28.5T480-240Zm-40-120h80v-200h-80v200Zm40-100Z" />
+                    </svg>
                     <div class="--block-container">
                         <h3 class="--sinopsis --no-stroke">Inicio de sesión no verificado</h3>
                         <p class="--description-transparent">Se ha iniciado sesión en un nuevo dispositivo</p>
@@ -40,16 +142,21 @@
             </div>
             <div class="--section-2-bottom --block-container">
                 <div class="--inline-container --responsive-block-centered">
-                    <img src="https://softkitacademy.com/static/icons/lock.svg" class="--trending-down" alt="Alert icon" width="25" height="25">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="34px" viewBox="0 -960 960 960" width="40px"
+                        fill="#f00">
+                        <path
+                            d="M240-80q-33 0-56.5-23.5T160-160v-400q0-33 23.5-56.5T240-640h40v-80q0-83 58.5-141.5T480-920q83 0 141.5 58.5T680-720v80h40q33 0 56.5 23.5T800-560v400q0 33-23.5 56.5T720-80H240Zm0-80h480v-400H240v400Zm240-120q33 0 56.5-23.5T560-360q0-33-23.5-56.5T480-440q-33 0-56.5 23.5T400-360q0 33 23.5 56.5T480-280ZM360-640h240v-80q0-50-35-85t-85-35q-50 0-85 35t-35 85v80ZM240-160v-400 400Z" />
+                    </svg>
                     <div class="--block-container">
                         <h3 class="--sinopsis --no-stroke">Cambio de contraseña</h3>
-                        <p class="--description-transparent">Se recomienda cambiar la contraseña inmediatamente para asegurar su cuenta</p>
+                        <p class="--description-transparent">Se recomienda cambiar la contraseña inmediatamente para
+                            asegurar su cuenta</p>
                     </div>
                 </div>
             </div>
             <span class="--button --button-default-hover">Verificar seguridad</span>
         </div>
     </main>
-</body--full-screen>
+    </body>
 
 </html>

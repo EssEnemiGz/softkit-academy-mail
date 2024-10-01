@@ -144,7 +144,8 @@ def recent_login():
         try:
             server = mail_manager.connectToSMTP(smtp_usr=mail_user, smtp_passw=mail_passw)
             mail_manager.sendMail(alias=mail_no_reply, to_email=email, body=msg, subject=subject, server=server)
-        except: 
+        except Exception as e:
+            print(e)
             err = make_response( "ERROR SENDING YOUR CONFIRMATION E-MAIL" )
             err.status_code = 500
             return err
