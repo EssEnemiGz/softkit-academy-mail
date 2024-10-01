@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email Alert - SoftKit Academy</title>
+    <link rel="stylesheet" href="https://softkitacademy.com/static/css/general.css">
+    <!-- GOOGLE FONTS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400..700;1,400..700&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="preload" media="print" onload="this.onload=null;this.rel='stylesheet'">
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;900&display=swap"
+        rel="stylesheet">
+</head>
+
+<body class="--full-screen --inline-container">
+    <main class="main --inline-container --self-centered">
+        <div class="--card --self-centered --margin-inline" style="max-width: 400px;">
+            <h1 class="--title --stroke --element-micro-margin">Alerta de seguridad</h1>
+            <p class="--description-transparent">Nuestros sistemas detectaron actividad inusual en su cuenta</p>
+            <div class="--section-2-top --section-mini-margin --block-container">
+                <div class="--inline-container --responsive-block-centered">
+                    <img src="https://softkitacademy.com/static/icons/warning.svg" class="--trending-down" alt="Alert icon" width="25" height="25">
+                    <div class="--block-container">
+                        <h3 class="--sinopsis --no-stroke">Inicio de sesión no verificado</h3>
+                        <p class="--description-transparent">Se ha iniciado sesión en un nuevo dispositivo</p>
+                        <p class="--description-transparent">
+                            <br>
+                            Device: {{ info.get("device") }}<br>
+                            IP Address: {{ info.get("ip") }}<br>
+                            OS: {{ info.get("os") }}<br>
+                            <!-- Location: San Francisco, CA<br> -->
+                            Time: {{ info.get(date) }}<br>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="--section-2-bottom --block-container">
+                <div class="--inline-container --responsive-block-centered">
+                    <img src="https://softkitacademy.com/static/icons/lock.svg" class="--trending-down" alt="Alert icon" width="25" height="25">
+                    <div class="--block-container">
+                        <h3 class="--sinopsis --no-stroke">Cambio de contraseña</h3>
+                        <p class="--description-transparent">Se recomienda cambiar la contraseña inmediatamente para asegurar su cuenta</p>
+                    </div>
+                </div>
+            </div>
+            <span class="--button --button-default-hover">Verificar seguridad</span>
+        </div>
+    </main>
+</body--full-screen>
+
+</html>

@@ -139,11 +139,7 @@ def recent_login():
         return response
     
     if secret_key == payload.get("data"):
-        msg = """
-        <h1>Alguien accedió a su cuenta recientemente<h1><br>
-        <br>
-        <p>Este sistema está en beta, nuevas funciones llegarán pronto</p>
-        """
+        msg = render_template("email-alert.html", info=data)
         subject = "Security Alert - SoftKit Academy"
         try:
             server = mail_manager.connectToSMTP(smtp_usr=mail_user, smtp_passw=mail_passw)
