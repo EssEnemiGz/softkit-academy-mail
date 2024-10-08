@@ -140,7 +140,7 @@ def recent_login():
     if secret_key == payload.get("data"):
         msg = render_template("email-alert.html", info=data)
         subject = "Security Alert - SoftKit Academy"
-        print(data.get("device"), data.get("device").family, type(data.get("device")))
+        print(data.get("device"), type(data.get("device")))
         try:
             server = mail_manager.connectToSMTP(smtp_usr=mail_user, smtp_passw=mail_passw)
             mail_manager.sendMail(alias=mail_no_reply, to_email=email, body=msg, subject=subject, server=server)
