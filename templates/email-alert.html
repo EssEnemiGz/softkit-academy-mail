@@ -5,7 +5,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Email Alert - SoftKit Academy</title>
-    <link rel="stylesheet" href="https://softkitacademy.com/static/css/general.css">
     <!-- GOOGLE FONTS -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -14,122 +13,26 @@
         rel="preload" media="print" onload="this.onload=null;this.rel='stylesheet'">
     <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;900&display=swap"
         rel="stylesheet">
-
-    <style>
-        .--inline-container {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .--block-container {
-            display: flex;
-            flex-direction: column;
-            gap: 4px;
-        }
-
-        .--button-default-hover:hover {
-            transition: .1s ease-in-out;
-            background-color: var(--purple);
-            cursor: pointer;
-        }
-
-        .--button {
-            position: relative;
-            background: var(--gray);
-            color: var(--white);
-            padding: 15px 25px 15px 25px;
-            border-radius: var(--border-3);
-            width: fit-content;
-        }
-
-        .--full-screen {
-            height: 100svh;
-            width: 100svw;
-        }
-
-        .self-centered {
-            margin-inline: auto;
-        }
-
-        .--margin-inline {
-            margin-inline: 24px;
-        }
-
-        .--element-micro-margin {
-            margin-block: var(--margin-5);
-        }
-
-        .--clickable {
-            cursor: pointer;
-        }
-
-        .--no-stroke {
-            font-weight: var(--fw-400);
-        }
-
-        .--stroke {
-            font-weight: var(--fw-600);
-        }
-
-        .--description-transparent {
-            color: var(--gray-medium);
-            font-size: var(--fs-5);
-        }
-
-        .--sinopsis {
-            font-size: var(--fs-4);
-        }
-
-        .--responsive-inline-centered {
-            justify-content: initial;
-        }
-
-        .--responsive-block-centered {
-            align-items: initial;
-        }
-
-        .--section {
-            padding-block: var(--margin-section);
-        }
-
-        .--section-2 {
-            padding-block: calc(var(--margin-section)/2);
-        }
-
-        .--section-2-top {
-            padding-top: calc(var(--margin-section)/2);
-        }
-
-        .--section-2-bottom {
-            padding-bottom: calc(var(--margin-section)/2);
-        }
-
-        .--title {
-            font-size: var(--fs-3);
-            font-weight: var(--fw-500);
-            color: var(--coal);
-            margin-block-end: 4px;
-        }
-    </style>
 </head>
 
-<body class="--full-screen --inline-container" style="background-color: white;">
-    <main class="main --inline-container --self-centered">
-        <div class="--card --self-centered --margin-inline" style="max-width: 400px;">
-            <h1 class="--title --stroke --element-micro-margin">Alerta de seguridad</h1>
-            <p class="--description-transparent">Nuestros sistemas detectaron actividad inusual en su cuenta</p>
-            <div class="--section-2-top --section-mini-margin --block-container">
-                <div class="--inline-container --responsive-block-centered">
+<body
+    style="background-color: white; display: flex; align-items: center; gap: 8px; height: 100svh; width: 100svw; font-family: 'Be Vietnam Pro', sans-serif; box-sizing: border-box; margin: 0;">
+    <main style="box-sizing: border-box; margin: 0; display: flex; align-items: center; gap: 8px; margin-inline: auto;">
+        <div
+            style="box-sizing: border-box; margin: 0; max-width: 400px; margin-inline: 24px; display: flex; flex-direction: column; justify-content: center; position: relative; padding: 24px; border-radius: 6px; background-color: #fff; box-shadow: 1px 1px 4px 1px rgba(0, 0, 0, 0.1); height: 100%;">
+            <h1 style="box-sizing: border-box; margin: 0; font-size: 1.563rem; font-weight: 500; color: #282828; margin-block-end: 4px;">Alerta de seguridad</h1>
+            <p style="box-sizing: border-box; margin: 0; color: #999999; font-size: 0.957rem;">Nuestros sistemas detectaron actividad inusual en su cuenta</p>
+            <div style="box-sizing: border-box; margin: 0; margin-block: 20px; display: flex; flex-direction: column; gap: 4px; padding-top: 50px;">
+                <div style="box-sizing: border-box; margin: 0; display: flex; gap: 8px;">
                     <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
                         fill="#f00">
                         <path
                             d="m40-120 440-760 440 760H40Zm138-80h604L480-720 178-200Zm302-40q17 0 28.5-11.5T520-280q0-17-11.5-28.5T480-320q-17 0-28.5 11.5T440-280q0 17 11.5 28.5T480-240Zm-40-120h80v-200h-80v200Zm40-100Z" />
                     </svg>
-                    <div class="--block-container">
-                        <h3 class="--sinopsis --no-stroke">Inicio de sesión no verificado</h3>
-                        <p class="--description-transparent">Se ha iniciado sesión en un nuevo dispositivo</p>
-                        <p class="--description-transparent">
+                    <div style="box-sizing: border-box; margin: 0; display: flex; flex-direction: column; gap: 4px;">
+                        <h3 style="box-sizing: border-box; margin: 0; font-weight: 500; font-size: 1.128rem;">Inicio de sesión no verificado</h3>
+                        <p style="box-sizing: border-box; margin: 0; color: #999999; font-size: 0.957rem;">Se ha iniciado sesión en un nuevo dispositivo</p>
+                        <p style="box-sizing: border-box; margin: 0; color: #999999; font-size: 0.957rem;">
                             <br>
                             Device: {{ info.get("device") }}<br>
                             IP Address: {{ info.get("ip") }}<br>
@@ -141,23 +44,23 @@
                     </div>
                 </div>
             </div>
-            <div class="--section-2-bottom --block-container">
-                <div class="--inline-container --responsive-block-centered">
+            <div style="box-sizing: border-box; margin: 0; display: flex; flex-direction: column; gap: 4px; padding-bottom: 50px;">
+                <div style="box-sizing: border-box; margin: 0; display: flex; gap: 8px;">
                     <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px"
                         fill="#f00">
                         <path
                             d="M240-80q-33 0-56.5-23.5T160-160v-400q0-33 23.5-56.5T240-640h40v-80q0-83 58.5-141.5T480-920q83 0 141.5 58.5T680-720v80h40q33 0 56.5 23.5T800-560v400q0 33-23.5 56.5T720-80H240Zm0-80h480v-400H240v400Zm240-120q33 0 56.5-23.5T560-360q0-33-23.5-56.5T480-440q-33 0-56.5 23.5T400-360q0 33 23.5 56.5T480-280ZM360-640h240v-80q0-50-35-85t-85-35q-50 0-85 35t-35 85v80ZM240-160v-400 400Z" />
                     </svg>
-                    <div class="--block-container">
-                        <h3 class="--sinopsis --no-stroke">Cambio de contraseña</h3>
-                        <p class="--description-transparent">Se recomienda cambiar la contraseña inmediatamente para
+                    <div style="box-sizing: border-box; margin: 0; display: flex; flex-direction: column; gap: 4px;">
+                        <h3 style="box-sizing: border-box; margin: 0; font-size: 1.128rem; font-weight: 500;">Cambio de contraseña</h3>
+                        <p style="box-sizing: border-box; margin: 0; color: #999999; font-size: 0.957rem;">Se recomienda cambiar la contraseña inmediatamente para
                             asegurar su cuenta</p>
                     </div>
                 </div>
             </div>
-            <span class="--button --button-default-hover">Verificar seguridad</span>
+            <span style="box-sizing: border-box; margin: 0; position: relative; background: #333333; color: #fff; padding: 15px 25px 15px 25px; border-radius: 6px; width: fit-content;">Verificar seguridad</span>
         </div>
     </main>
-    </body>
+</body>
 
 </html>
