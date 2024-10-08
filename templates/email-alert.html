@@ -131,8 +131,9 @@
                         <p class="--description-transparent">Se ha iniciado sesión en un nuevo dispositivo</p>
                         <p class="--description-transparent">
                             <br>
-                            Device: {{ info.get("device").family }}<br>
+                            Device: {{ info.get("device") }}<br>
                             IP Address: {{ info.get("ip") }}<br>
+                            COUNTRY: {{ info.get("country") }}
                             OS: {{ info.get("os") }}<br>
                             <!-- Location: San Francisco, CA<br> -->
                             Time: {{ info.get("date") }}<br>

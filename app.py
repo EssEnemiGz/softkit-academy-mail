@@ -26,7 +26,6 @@ server_code = os.getenv('SERVER_CODE')
 # Configuracion de la aplicacion web
 app = Flask(__name__)
 CORS(app, origins=["https://softkitacademy.com", "https://www.softkitacademy.com"])
-if secret_key == None: secret_key = "ewkwer1231231kajeklew3213ropewp21oiewrop312309-490i3u2313jwlelk"
 app.secret_key = secret_key
 app.config['SESSION_COOKIE_SECURE'] = True
 app.config['SESSION_COOKIE_HTTPONLY'] = True
@@ -141,6 +140,7 @@ def recent_login():
     if secret_key == payload.get("data"):
         msg = render_template("email-alert.html", info=data)
         subject = "Security Alert - SoftKit Academy"
+        print(data.get("device"))
         try:
             server = mail_manager.connectToSMTP(smtp_usr=mail_user, smtp_passw=mail_passw)
             mail_manager.sendMail(alias=mail_no_reply, to_email=email, body=msg, subject=subject, server=server)
