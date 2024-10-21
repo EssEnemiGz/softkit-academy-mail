@@ -154,6 +154,43 @@ def recent_login():
     response.status_code = 200
     return response
     
+@app.route("/get/email", methods=["PUT"])
+def angel_class():
+    try:
+        data = request.get_json()
+    except:
+        abort(400)
+    
+    if not len(data):
+        abort(400)
+        
+    r_key = data.get("key")
+    email = data.get("email")
+    if email == None:
+        err = make_response( "You need to enter a email" )
+        err.status_code = 400
+        return err
+    
+    if r_key == None or r_key != os.getenv("TEST_KEY"):
+        err = make_response("Incorrect key")
+        err.stauts_code = 401
+        return err
+
+    try:
+        msg = "Correo enviado desde el servidor del Biscen :)" 
+        subject = "Clase de Angel - Correo"
+        server = mail_manager.connectToSMTP(smtp_usr=mail_user, smtp_passw=mail_passw)
+        mail_manager.sendMail(alias=mail_no_reply, to_email=email, body=msg, subject=subject, server=server)    
+    except Exception as e:
+        print(e)
+        err = make_response( "ERROR SENDING YOUR CONFIRMATION E-MAIL" )
+        err.status_code = 500
+        return err
+    
+    response = make_response( "DONE!" )
+    response.status_code = 200
+    return response
+
 @app.route('/favicon.ico')
 def favicon():
     return send_from_directory("static/icons", "favicon.ico")
