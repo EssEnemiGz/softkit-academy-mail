@@ -1,6 +1,7 @@
 import smtplib, ssl
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
+import re
 
 def connectToSMTP(*, smtp_usr, smtp_passw):
     port = 587  # For starttls
@@ -22,3 +23,7 @@ def sendMail(*, alias, to_email, body, subject, server):
     msg.attach(MIMEText(body, 'html'))    
     server.sendmail(alias, to_email, msg.as_string())
     server.quit()
+    
+def is_valid_email(email):
+    pattern = r'^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$'
+    return re.match(pattern, email) is not None

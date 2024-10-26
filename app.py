@@ -7,7 +7,6 @@ from dotenv import load_dotenv
 from datetime import timedelta
 import supabase
 import jwt
-import re
 import os
 
 # Server config
@@ -124,7 +123,7 @@ def recent_login():
         err.status_code = 400
         return err
     
-    valid = re.match(r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$', email)
+    valid = mail_manager.is_valid_email(email)
     if type(email) != type("") or not valid:
         err = make_response( "You need to enter a valid email" )
         err.status_code = 400
