@@ -122,12 +122,6 @@ def recent_login():
         err = make_response( "You need to enter a email" )
         err.status_code = 400
         return err
-    
-    valid = mail_manager.is_valid_email(email)
-    if type(email) != type("") or not valid:
-        err = make_response( "You need to enter a valid email" )
-        err.status_code = 400
-        return err
         
     key = request.headers.get("Authorization")
     if key == None:
@@ -181,6 +175,12 @@ def angel_class():
     if r_key == None or r_key != os.getenv("TEST_KEY"):
         err = make_response("Incorrect key")
         err.stauts_code = 401
+        return err
+
+    valid = mail_manager.is_valid_email(email)
+    if type(email) != type("") or not valid:
+        err = make_response( "You need to enter a valid email" )
+        err.status_code = 400
         return err
 
     try:
