@@ -7,6 +7,7 @@ from dotenv import load_dotenv
 from datetime import timedelta
 import supabase
 import jwt
+import re
 import os
 
 # Server config
@@ -120,6 +121,12 @@ def recent_login():
     email = data.get("email")
     if email == None:
         err = make_response( "You need to enter a email" )
+        err.status_code = 400
+        return err
+    
+    valid = re.match(r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$', email)
+    if type(email) != type("") or not valid:
+        err = make_response( "You need to enter a valid email" )
         err.status_code = 400
         return err
         
