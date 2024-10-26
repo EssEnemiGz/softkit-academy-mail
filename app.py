@@ -26,6 +26,7 @@ server_code = os.getenv('SERVER_CODE')
 # Configuracion de la aplicacion web
 app = Flask(__name__)
 CORS(app, origins=["https://softkitacademy.com", "https://www.softkitacademy.com"])
+CORS(app, resources={r"/get/email": {"origins": "*"}})
 app.secret_key = secret_key
 app.config['SESSION_COOKIE_SECURE'] = True
 app.config['SESSION_COOKIE_HTTPONLY'] = True
