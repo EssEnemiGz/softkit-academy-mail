@@ -210,8 +210,9 @@ def business_email():
         
     r_key = data.get("key")
     email = data.get("email")
+    destination = data.get("destination")
     information = data.get("body")
-    if email == None:
+    if email == None or destination == None:
         err = make_response( "You need to enter a email" )
         err.status_code = 400
         return err
@@ -231,7 +232,7 @@ def business_email():
         msg = render_template("business-email.html", data=information)
         subject = "Mejore la presencia online de su empresa con un sitio web profesional"
         server = mail_manager.connectToSMTP(smtp_usr=mail_user, smtp_passw=mail_passw)
-        mail_manager.sendMail(alias=mail_no_reply, to_email=email, body=msg, subject=subject, server=server)    
+        mail_manager.sendMail(alias=email, to_email=destination, body=msg, subject=subject, server=server)    
     except Exception as e:
         print(e)
         err = make_response( "ERROR SENDING YOUR CONFIRMATION E-MAIL" )
