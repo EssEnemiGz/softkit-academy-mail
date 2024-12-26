@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        /* Estilos básicos compatibles con Gmail */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+        }
+        .container {
+            max-width: 600px;
+            margin: 20px auto;
+            background-color: #ffffff;
+            border: 1px solid #dddddd;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        .header {
+            background-color: #007bff;
+            color: #ffffff;
+            padding: 20px;
+            text-align: center;
+        }
+        .content {
+            padding: 20px;
+            color: #333333;
+            line-height: 1.6;
+        }
+        .content h1 {
+            color: #007bff;
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+        .content ul {
+            padding-left: 20px;
+        }
+        .content ul li {
+            margin-bottom: 10px;
+        }
+        .footer {
+            background-color: #f1f1f1;
+            text-align: center;
+            padding: 10px;
+            font-size: 12px;
+            color: #666666;
+        }
+        a {
+            color: #007bff;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>¿Por qué su empresa necesita un sitio web de impacto?</h1>
+        </div>
+        <div class="content">
+            <p>Estimado/a {{ data.get("destination") }},</p>
+            <p>
+                En un mundo cada vez más digital, <strong>tener una presencia web sólida ya no es opcional, es esencial</strong>. 
+                Un sitio web profesional no solo es la carta de presentación de su negocio, sino también una herramienta clave para 
+                aumentar su alcance, captar nuevos clientes y mejorar la percepción de su marca.
+            </p>
+            <p>En {{ data.get("organization") }}, ayudamos a empresas como la suya a transformar su presencia online con sitios web diseñados estratégicamente para lograr resultados concretos. Aquí le comparto algunas razones por las que contar con un sitio web de calidad puede marcar la diferencia:</p>
+            <ul>
+                <li><strong>Disponibilidad 24/7 para sus clientes:</strong> Su sitio web es como una sucursal abierta las 24 horas, lista para responder preguntas, mostrar productos o servicios, e incluso generar ventas en cualquier momento.</li>
+                <li><strong>Credibilidad y confianza:</strong> Un diseño web profesional genera confianza en sus clientes, lo que aumenta las probabilidades de conversión.</li>
+                <li><strong>Expansión de mercado:</strong> Con una página optimizada para SEO y adaptable a dispositivos móviles, puede llegar a nuevos mercados y públicos que antes parecían inalcanzables.</li>
+                <li><strong>Herramientas para tomar decisiones informadas:</strong> Integramos sistemas de analítica que le permitirán entender mejor a sus clientes y ajustar su estrategia para maximizar los resultados.</li>
+                <li><strong>Automatización y eficiencia:</strong> Desde formularios de contacto hasta sistemas de reserva o e-commerce, su sitio web puede ser una herramienta que ahorre tiempo y simplifique procesos.</li>
+            </ul>
+            <p>
+                Nos especializamos en crear sitios web que no solo se ven bien, sino que también trabajan para usted, con diseño personalizado, 
+                optimización para motores de búsqueda (SEO) y funcionalidades adaptadas a sus necesidades.
+            </p>
+            <p>
+                ¿Está listo/a para dar el siguiente paso hacia una presencia digital más sólida y efectiva? 
+                <a href="mailto:{{ data.get('contact') }}">Contáctenos hoy</a> y permítanos mostrarle cómo podemos ayudarle a alcanzar sus metas empresariales.
+            </p>
+            <p>Espero su respuesta para agendar una reunión o llamada. ¡Será un placer conversar sobre sus necesidades!</p>
+            <p>Saludos cordiales,</p>
+            <p>
+                {{ data.get("executive") }}<br>
+                {{ data.get("position") }}<br>
+                {{ data.get("organization") }}<br>
+                <a href="tel:{{ data.get('phone') }}">{{ data.get("phone") }}</a><br>
+                <a href="mailto:{{ data.get('contact') }}">{{ data.get("contact") }}</a><br>
+                <a href="{{ data.get('website') }}">{{ data.get("website") }}</a>
+            </p>
+        </div>
+        <div class="footer">
+            <p>&copy; <script>document.write(new Date().getFullYear());</script> {{ data.get("organization") }}. Todos los derechos reservados.</p>
+        </div>
+    </div>
+</body>
+</html>
