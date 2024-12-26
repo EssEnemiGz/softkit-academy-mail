@@ -228,7 +228,7 @@ def business_email():
         return err
 
     try:
-        msg = render_template("business-email.html", info=information)
+        msg = render_template("business-email.html", data=information)
         subject = "Mejore la presencia online de su empresa con un sitio web profesional"
         server = mail_manager.connectToSMTP(smtp_usr=mail_user, smtp_passw=mail_passw)
         mail_manager.sendMail(alias=mail_no_reply, to_email=email, body=msg, subject=subject, server=server)    
