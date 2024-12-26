@@ -216,7 +216,7 @@ def business_email():
         err.status_code = 400
         return err
     
-    if r_key == None or r_key != os.getenv("TEST_KEY"):
+    if r_key == None or r_key != os.getenv("BUSINESS_KEY"):
         err = make_response("Incorrect key")
         err.stauts_code = 401
         return err
