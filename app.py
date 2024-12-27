@@ -230,7 +230,7 @@ def business_email():
 
     try:
         msg = render_template("business-email.html", data=information)
-        subject = "Mejore la presencia online de su empresa con un sitio web profesional"
+        subject = "Enhance Your Company’s Online Presence with a Professional Website"
         server = mail_manager.connectToSMTP(smtp_usr=mail_user, smtp_passw=mail_passw)
         mail_manager.sendMail(alias=email, to_email=destination, body=msg, subject=subject, server=server)    
     except Exception as e:
